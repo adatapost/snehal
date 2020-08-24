@@ -1,0 +1,64 @@
+Memory Architecture of program
+------------------------------
+
+How much bytes or memory will be assigned to a running program? This question address the usage of memory (RAM) by a program.
+
+Ans:
+
+  When we launch/start/run a program, the memory manager of "OS" allocate 1 MB RAM for each
+  running program an this 1 MB RAM area is called "STACK Frame" area. 
+
+  Now, if you (your program) need more meory than "STACK Frame" then you must have to
+  request the memory manager of OS for more memory via malloc/calloc (C Language) functions or
+  "new" keyword in C++, Java,C#, VB.NET, PHP (and many more) languages. This type of memory
+  area is called "HEAP Frame".
+
+Object?
+----------
+  
+  The "allocated bytes" is known as an "Object".
+
+  OR Partitioned area of RAM is calle an "object".
+
+  The "size" of an object can be vary from 1 bytes to 2 GB or more (as required).
+
+Example: Create three objects of int (4 bytes long) in .NET, 
+
+          System.Int32 a,b,c;   
+     
+          Where System.Int32 is a datatype and this instruction tells memory manager to
+	  reserved "4" bytes for each object. 
+
+            Here, we've three objects,
+
+|---------|
+|---------|
+|---------|
+|---------|
+|---------|
+|---------|
+|---------|
+|---------| 1003 
+|---------| 1002
+|---------| 1001
+|---------| 1000  = a   <--- byte number 1000 to 1003 (4 bytes) area is called an object
+|---------| ..               and this object is accessed via "memory address/reference" or
+                             variable name.
+
+What is variable?
+
+   A variable is an alias of an object.
+
+ Or
+
+  A variable is name (symbol) that represents the memory address of an object.
+
+ Or
+
+  It addresses an object location.
+
+				
+
+
+
+   

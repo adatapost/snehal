@@ -1,0 +1,274 @@
+The Operators
+================================================================
+
+Operators are special symbols or keywords which represent one or more actions.
+
+We've three main categories of operators:
+
+   1. Unary operators -- Single operator operates an operand (value/variable)
+   2. Binary operators -- Single operator operates two operands
+   3. Teranary/Conditional operator -- exp1 ? exp2 : exp3
+
+Operator Rank (Precendence) -- It determines which operator in an expression will execute first.
+
+Associativity -- It determines in which direction an expression will be evaluted -- from Right to
+		 Left or Left to Right.
+
+Rank	Operators				Associativity
+-----    ---------                              -----
+1	 ( )	[ ]				L->R
+2        Unary operator				R->L
+3	 * / % 					L->R
+4	 + -					L->R
+5	 > >= < <= Relational			L->R
+6	 == !=  Relational equality/not equality L->R
+7 	 && ||  Logical/boolean			 L->R
+8	 Teranary operator			 L->R
+9.	 Assignment and shorthand operators	 R->L
+	  =  +=  *=  /=  %=
+10	 Comma , operator			 L->R
+
+
+1. Arithmetic operator + - * / %
+2. Assignment operator = 
+3. Increment/Decrement -- ++
+4. Relational operator > >= < <= == !=
+5. Boolean/Logical operators && ||  !
+6. Conditional operator boolean_exp1 ? true_part_exp2 : false_part_exp3
+7. Bitwise operator
+8. Misc operators . -> as is new in from where
+
+Example-1
+
+ int s = 10 + 5 % 10 * (2 + 4);  // 10 + 5 % 10 * 6 = 10 + 5 * 6 = 40
+ Console.WriteLine( s );
+
+Example-2 Write expression for following formula
+                      2
+      a - b      (a-b)
+  m = ------- - ----------
+         2         b
+        a         ---
+                   3
+Example-3
+
+        Console.WriteLine(10.2m % 5); // 0.2
+        Console.WriteLine(10.2 % 5); // 0.19999999
+        Console.WriteLine(5 / 2);   // 2
+        Console.WriteLine(5m / 2);   // 2.5
+        Console.WriteLine(5.0 / 2);   // 2.5 approx 
+
+Example-4 Input two numbers and perform arithmetic operations
+
+decimal no1, no2;
+
+Console.Write("Enter first number : ")
+no1 = decimal.Parse( Console.ReadLine() );
+Console.Write("Enter second number : ")
+no2 = decimal.Parse( Console.ReadLine() );
+
+Console.WriteLine(no1 + no2)
+Console.WriteLine($"{no1}+{no2}={no1+no2}");
+Console.WriteLine($"{no1}*{no2}={no1*no2}");
+Console.WriteLine("Division of {0} and {1} is {2}",no1,no2,no1/no2);
+
+Increment/Decrement operators
+------------------------------
+++ -> Add value 1 to variable
+-- -> Subtract value 1 from a variable
+
+These operators used as single expression then they have no difference.
+
+       int n = 10;
+        n++; // n = n + 1
+        Console.WriteLine(n); // 11
+        ++n; // n = n + 1
+        Console.WriteLine(n);  // 12
+        n--;  // n = n - 1
+        Console.WriteLine(n);  // 11
+        --n; // n = n - 1
+        Console.WriteLine(n);  // 10       
+
+But, used as part of another expression then post operation will take place after the execution of
+current expression and pre operation will take place before the execution of current expression.
+
+        int n = 1,m;
+
+        m = n++;   // Post increment 
+                   // 1. m = n;
+                    //2. n = n + 1;
+        Console.WriteLine($"{n}  {m}");  // 2 1
+
+        n = 1;
+        m = ++n;  // Pre Incr 
+                  // 1. n = n +1
+                  // 2. m = n
+        Console.WriteLine($"{n}  {m}");  // 2 2
+
+Example: Relational operators  > >=  <  <=  ==   != Relation expression returns boolean value.
+       
+        int a = 3, b = 4;
+
+        Console.WriteLine(a == b); // false
+        Console.WriteLine(a < b); // true
+        Console.WriteLine(a = b); // 4 (assignment)
+        Console.WriteLine(a == b); // true
+        Console.WriteLine(a != b); // false
+
+
+Example: Logical or boolean operators - && || ! (not)
+
+        int a = 3, b = 4;
+
+        Console.WriteLine(a < b && a>2 );  // true
+        Console.WriteLine(a >=2 && a<=b );  // true
+
+        Console.WriteLine(a+1 == b && a <= b);  // true
+        Console.WriteLine(a++ > 10 && b++<2);  // false
+        Console.WriteLine(a + "  " + b);  // 4  4 - because first expression is false 
+                                      // so it won't execute/test second expression
+
+        Console.WriteLine(a == 4 && b++ < 1); // false
+        Console.WriteLine(a + " " + b);
+
+        Console.WriteLine(a == 4 || b-- < 1); // true - second expr wont be tested
+        Console.WriteLine(a + " " + b);       // 4 5    because 1st expr is true
+
+        Console.WriteLine(!true); // false
+        Console.WriteLine(!!true); // true
+        Console.WriteLine(!(10>20)); // true
+
+Example: Conditional operator   
+
+          varName = bool_expr1 ? expr2 : expr3;
+
+           This is single statement where the datatype of "expr2" must be same as "expr3". If bool_expr1 is true then "expr2" will returns, "expr3" returns otherwise.
+
+          Input two integer numbers and find the largest (maximum) and miminum.
+
+          int a,b,max,min;
+
+          Console.Write("Enter two numbers : ");
+          a = int.Parse( Console.ReadLine() );
+          b = int.Parse( Console.ReadLine() );
+  
+          max = a>b ? a : b;
+          min = a<b ? a : b;
+
+          Console.WriteLine($"Max : {max} and Min : {min}");
+
+Example: We've a number and test whether a number is odd or even?
+
+        int no = 10;
+
+        string msg = no%2 == 0 ? "Even" : "Odd";  // no%2!=0 ? "Odd" : "Even"
+        Console.WriteLine( msg );
+
+Example: We've a four digit year to test a year is leap or not?  
+Example: We've three numbers and find max and min among three.
+
+         int a=10,b=30,c=-4;
+
+         var max = a>b && a>c ? a : b>a && b>c ? b : c;
+Example: Input a number and test the input number is in between 30 to 70 or not.
+
+Example: We've a character (e.g char ch = 'Y';) and write code to test the given char is digit or not?
+        char ch = 'K';
+
+        var msg = ch >= '0' && ch <= '9' ? "Digit" : "Non Digit";
+        Console.WriteLine(msg);
+
+Example: We've a char and test the given char is alphabet or not
+Example: We've a char and test the given char is whitespace '\n' '\t' '\b' ' ' '\r'  or not
+Example: We've a char and test the given char is digit or alphabet or whitespace or symbols.
+
+Example: If a char is upper alphabet then convert it to lower alphabet.
+Hint:
+ 
+        // ANSI Code and Char operations
+        char ch = 'a';  
+        Console.WriteLine(ch + "  " + (int)ch);
+        Console.WriteLine( ch-32 );  // 65
+        Console.WriteLine(  (char) (ch-32) );  // A
+
+Ex:
+        char ch = 'G';
+
+        ch = ch >= 'A' && ch <= 'Z' ? (char)(ch + 32) : ch;
+        Console.WriteLine(ch);
+
+Example: Convert 'digit' to number
+
+ e.g  '6' to 6
+      '0' to 0
+
+Example: We've five marks of subjects (each from 100). Write code to
+         display "ATKT" if student scores less than 35 marks in one
+         or two subject(s).
+
+         Display "FAIL" if student scores less than 35 in three or more
+         subjects.
+
+         Display "PASS" otherwise.
+                           Fail Count
+10  20  50 7  30   = Fail   4 
+55 66 7 99 33      = ATKT   2
+55 66 7 79 37      = ATKT   1
+88 99 76 55 67     = PASS   0
+
+
+Example: We've electricity units comsumed by a customer. Write code
+         to calculate the bill amount as per following rates.
+
+
+	Units		Rate Per Unit (Rs)
+	----		--------
+	1-100		2.5
+	101-200		3.5
+	201-300		4.8
+	301 and above	6.5
+
+Example: We've two numbers. Write code to interchange them.
+
+  e.g  a = 10, b = 20 then output a = 20, b = 10
+
+Example: We've three numbers and find the second largest & second smallest among them.
+e.g a = 10, b = 40, c = -53 Second largest is 10 and second smallest is also 10
+
+Hint:     
+sm = a>b && a>c ? (b>c ? b : c) : b>a && b>c ? (a>c ? a : c) : b>a ? b : a;
+
+Hint:
+
+ if(a>b && a>c)
+  {
+   if(b>c)
+     {
+       smax = b;
+      }
+   else
+     {
+       smax = c;
+     }
+ }
+ else
+ if(b>a && b>c)
+ {
+    if(a>c)
+      smax = a;
+    else
+      smax = c;
+  }
+ else
+ {
+    if(a>b)
+      smax = a;
+    else
+      smax = b;
+  }
+
+ Console.WriteLine( smax );
+
+
+
+       

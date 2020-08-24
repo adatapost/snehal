@@ -1,0 +1,229 @@
+Date: 10-07-2020
+
+Datatype?
+
+It describes the nature of "data" and also define the "capacity -- range and size in bytes".
+
+What we (developers) uses "datatypes"?
+
+It explains or instructs the OS and Hardware to allocate certain amount (as per size of datatypes) of bytes from RAM.
+
+ For instance,
+
+	char datatype size is 2 bytes (16 bits)
+	int type has 4 bytes size <--- It can be 2 or 4 or 8 bytes (Hardware dependend)
+	float has 4 bytes
+	double has 8 bytes
+
+** IMPORTANT **
+
+   In fact, the size of type "int" can be either 2 bytes(16bits computers), 4 bytes(32bits), and      8 bytes(64bits) computers/hardware.
+
+   As of now, any computer system is either 32bits or 64bits.
+
+What is RAM?
+
+   It is a primary storage (memory or space) device (chips) which is addressable.
+
+
+   When we start the computer system, the operating system  (windows/linux/mac os) initialize the    "RAM Chips" and make them addressable like as :
+ 
+.....
+ .....
+|--------------|
+|              | ..  2 GB or 4 GB or 8 GB
+|--------------|
+|              | ...
+|--------------|
+|              | 1024 * 1024 * 1024 = 1024 MB = 1 GB
+|--------------|
+|              |  ...
+|--------------|
+|              |  1024 * 1024 byte =   1024 KB = 1 MB
+|--------------|  
+|              | ...
+|--------------|
+|              | 1024 byte = 1 KB
+|--------------|
+|              | ...
+|--------------|
+|              | 1   (2nd byte)
+|--------------|
+|              | 0   (1st byte)   
+|--------------|
+
+Each "byte" is numbered from 0 to N-1 where N is the capacity of RAM and this "unique" integer number is called "Memory Address".
+
+In computer system, each and every instruction and data are initiallly stored into "RAM". The data and instructions stored into RAM are short lived so you must copy the RAM data into secondary storage (harddisk, USB, Zip, CD/DVD etc).
+
+                                                                    16 
+16bits computer can resolve memory addresses up to 0 to 65536 ( 0 to 2  -  1)
+
+                                                                         32
+32bits computer can resolve memory addresses up to 0 to 400 lakhs ( 0 to 2  -  1)
+
+                                                             64
+64bts computer can resolve memory addresses up to 0 to      2  -  1)
+
+So, the size of "int" type in any operating system heavily depedens upon the memory addressing & resolving system and here we've 32bits or 64bits system. That's why sizeof int can be 4 bytes or 8 bytes.
+
+In computer system, memory address resolve system is known as "Pointer" system.
+
+
+How the operating system uses or allocate memory for the programs (for data & instructions)?
+==========================================================================================
+
+The Byte -- it is a memory measurement unit and it is also known as "register" made up of "8 bits". Each "bit" can store electricity charge (+ve or -ve) and we will use binary digit 1 or 0 to describe this charge.
+
+
+   7   6  5    4   3  2   1    0     == 8 bits = 1 Byte (Register)
+ |---|---|---|---|---|---|---|---|
+ |   |   |   |   |   |   |   |   |
+
+Assume that we've value 1 as +ve and 0 for -ve (or vice versa) charge:
+
+so, one byte can hold binary digits (bits) of minimum binary value (or decimal equiavlent):
+
+   Binary                        Decimal
+
+   0  0  0  0    0  0  0  0   =  0
+   1  1  1  1    1  1  1  1   =  255
+
+How to obtain decimal equivalent from binary?
+
+First of all, calculate power of base of 2 of number 0 to 7 from left to right
+   7   6   5  4   3   2   1   0 
+  2   2   2   2   2   2   2  2
+
+Now, multiply each bit with its power of base 2:
+ 128  64  32  16  8   4   2   1	   
+   1   1   1   1  1   1   1   1  = 255
+   0   0   0   0  1   0   1   0  = 10
+   0   0   0   1  1   0   0   1  = 25
+ 
+So, in general, 1 byte can represent 0 to 2^8 - 1 (255)
+                2 bytes can represent 0 to 2^16 -1  (65535)
+                4 bytes  can 0 to 2^32 - 1 (4 GB)
+                8 bytes can represent 0 to 2^64 
+
+
+So we need 4 bytes to store pin of ciry: 384001
+We will use 1 byte to store human age.
+
+Now, we've a question "how negative as well as positive" value is stored into memory?"
+
+  In general, to store sign information (+ve or -ve) into a byte, we've a mechanism in
+  operating system. The OS split a byte into two parts:
+
+        Sign bit      Data bits = 7 bits
+           7          6  5  4  3  2  1  0
+           
+   The data/value will be stored into "7" bits whereas value 0 or 1 will be stored into
+   last bit (8th); value 0 means positive data in 7 bits and value 1 means negative data in
+   7 bits.
+
+   So, signed byte can be expressed as:
+
+        Sign bit      Data bits = 7 bits
+           7          6  5  4  3  2  1  0
+         
+           0          0  0  0  1  0  1   0   =  Decimal +10
+
+           1          1  1  1  1  1  1   1   = Decimal -1
+           1          1  1  1  0  1  1   0   = Decimal -10
+
+Now, in OS specification, if sign bit is 1 then invert your bits (one's complement) the data bits.
+		In other words, use 0s in place of 1s and 1s in place of 0s.
+
+                               
+
+ In signed datatypes, a byte can hold following range:
+
+    0    0 0 0   0 0 0 0 = 0 
+    0    1 1 1   1 1 1 1 = 127  (0 to 2^7 - 1)
+
+    1    1 1 1   1 1 1 1 = -1
+    1    0 0 0   0 0 0 0 = -128  ( -128 to -1)
+
+Similary 2 bytes (16 bits = 1 signed nit + 15 data bits) range can be:
+
+    0 to 2^15-1  (positive)
+    -1 to -2^15   (negative)
+
+For 4 bytes (32 bits = 1  +31) : Range -2^31 to +2^31-1
+For 4 bytes (64 bits = 1  +63) : Range -2^63 to +2^63-1
+
+
+In unsigned bytes (without signed bits means all bits are used as data bits) range can be:
+
+    for 1 byte:  0 to 2^8-1
+    for 2 bytes: 0 to 2^16-1 .... and so on...
+
+
+
+  signed char ch;
+  unsigned char ph;
+
+
+The "charset" (Character Set)
+==============================
+
+A "charset" is a scheme that descibes total number of different characters a computer system supports. Each computer system must have ANSI charset as the base charset for everything (Keyboard, Mouse, Disk, Network, etc). 
+
+   => The ANSI charset uses 7 bits to present a char.
+   => A computer systems have total 256 ANSI chars in a set.   
+   => Each character in ANSI is uniquely identified with a positive integer number called "ANSI 	Code".
+
+ANSI Code	ANSI Char
+==========================
+0		         (nul)
+1		☺
+2		☻
+3		♥
+4		♦   			Hold down ALT + ANy number between 0 to 255
+..							from Numeric Keypad
+7		   (beep \a)
+8		   (backspace \b)
+9		   (horizontal tab \t)
+...
+13		   (Enter or Carriage return \r)
+..
+32		    (Space)
+..
+48		0
+49		1
+50		2
+...
+65		A
+66		B
+..
+..
+97		a
+98		b
+..
+..
+210		╥
+..
+255		   (empty)
+====
+256 ANSI chars (Total -- 0 to 255)
+
+Note that the ANSI charset represent English charset. In order to have a non-English charset, use "unicode" charset. The Unicode is known as "Universal Text Format - UTF".
+
+A UTF-8, UTF-16, and UTF-32 are various schemes of charset that different countries uses for their legal documents. For instance, UTF-8 scheme is used by India whereas USA uses UTF-16.
+
+As of today, any computer system (language/framework) occupies 2 bytes for char datatype. i.e. unicode char datatype.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

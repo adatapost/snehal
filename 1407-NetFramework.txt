@@ -1,0 +1,395 @@
+ The .NET Framework  (by convention .NET is written in ALL CAPS)
+=================================================================
+
+The ".NET Framework" is a computing environment to develop, deploy (install), and to execute the applications/software. That means the .NET Fraemwork offers languages (compilers), libraries(pre-compiled), and runtime.
+
+In fact, the OS is our first low-level computing environment and it offers very same services like the .NET framework does. So, to interect with OS, C/C++ programming languages are used and OS provides tons of functionalities in the form of "libraries".
+
+The .NET FRamework was first released in 2002 by the Microsoft and as of today there is another open source framework created by Microsoft called "Core.NET". The ".NET Framework" is a propriratory product whereas "Core.NET" is open source.
+
+When you install Visual Studio Community Edition (free) (Or use paid VS Enterprise or Standard editions), both frameworks will be installed.
+
+The ".NET Framework" framework/platform targets the "Windows" Operating system whereas
+the "Core.NET" framework targets the "Windows", "Linux", "Mac OS".
+
+Components of .NET Framework
+----------------------------
+
+There are number of number of components in .NET framework but actually three of them constitute the .NET Framework and these are:
+
+   1. CLS - Common Language Specification 
+
+   2. CTS - Common Types System
+
+   3. CLR - Common Language Runtime
+
+ What is "common language" in .NET Framework? 
+
+     .NET Framework has a language called "IL or MSIL - Microsoft Intermediate Language" which
+     is known as "Common Language". 
+
+     In fact, it is a "language" of "languages".
+
+     For instance, It is a language of "C#", "VB", "F#" etc.
+
+                   e.g "C# is our programming language" -- We write code in C# syntax and
+                       "IL is C#'s programming language" -- C# writes code in IL.
+
+|--------------------------------------|
+| Languages: C#, VB, F#, Python, Cobol |
+|--------------------------------------|
+              |
+              V
+|--------------------------------------|
+|     IL - Intermediate language       |
+|          Common Language             |
+|--------------------------------------|
+|  CTS - Common Types (Libraries)      |
+| |----------------------------------| |
+| | Base Class Library (BCL)         | |  <--- This is the .NET Framework
+| |----------------------------------| |
+| | Extended Class Library           | |
+| | e.g ADO.NET, XML.NET, ASP.NET etc| |
+| |----------------------------------| |
+|                                      |
+|--------------------------------------|
+| CLR - Common Language Runtime        |
+|--------------------------------------|
+         ^   |
+         |   V
+|--------------------------------------|
+| Operating Systems-Windows/Linux/Mac  |
+|--------------------------------------|
+
+ [.NET Framework Architecture]
+
+
+CLS
+===
+
+ It is a guideline for the people who wants to use the .NET Framework. This guideline include rules for declarating a variable to develop large scale application or another sub framework.
+
+Any programming language created using this guideline is known as "CLS Compliant" programming language or CLS Compliant compiler. e.g. C# is CLS Compliant compiler.
+
+Any library created using this guideline is called "CTS - Common Types System".
+
+Any Runtime created using this guideline is called "CLR - Common Language Runtime".
+
+In fact, CLS is a collection of number of "specifications -- guideline books" creaed by the expert groups.
+
+CLS Compliant Code -- If you write code as the CLS then your code becomes CLS Compalint code and
+		      this code can exeucte on "any" system.
+
+NON-CLS Compliant code means code wirtten without the CLS guideline or code written usig Non CLS compliant language.
+
+CTS - Common Types System
+=====
+
+Type means "Datatype/Class/Category".
+
+We've two main categories of TYPES:
+
+  1. Base Class Library (BCL) or Foundation Class Library (FCL)
+
+     These are set of very essential classes/Types. It is really impossible to write a single
+	line of code without using the "Base class library".
+
+	Following are example of "base class library types":
+
+		1. IO
+		2. Network	
+		3. Simple Types (int, char, float etc)
+		4. Collection
+		5. Text Format
+		6. Regular Expression
+		7. Security/Crypto etc
+ 2.  Extended Class Library means application specific library.
+
+	Following are example of Extended class libraries:
+		1. ADO.NET
+		2. WinForm
+		3. WPF - Windows Presentation Framework
+		4. WCF - Windows Communication Framework
+		5. WWF - Windows Workflow Foundation
+		6. ASP.NET
+		7. XML.NET and many more.....
+
+
+Based upon the memory (RAM) usage, CTS falls into two groups:
+
+ 1. Value Types and
+ 2. Reference Types
+
+1. Value Types  -> Types having fixed capacity/size/range (Fixed size object)
+		-> Types created using "enum" and "struct" keywords are Value Types
+		-> All simple/fundamental/primitive types are "struct" e.g int,char,float etc.
+
+2. Reference Types -> Types having variable capacity/size/range. (Variable length object)
+		   -> Types created using "class", "array","delegate" and "interface" are
+			Reference Types.	
+
+
+Value Types can use "Stack Frame" as well as "Heap Frame" memory.
+
+Reference Types always uses "Heap Frame" memory.
+
+Value Types if not "involved or used" with Reference Types always uses "Stack Frame" but if they are with Reference Types then they will use "Heap Frame".
+
+
+Variables (objects) of Value type must have value of the type it belongs to.
+
+Variable of Reference type might contains memory address/reference of an object or null. The null indicates an object is missing or object is not created.
+
+CTS Design architecture
+------------------------
+
+
+The entire CTS are designed using Object Oriented Paradigm (Methodology).  
+
+What do you meant by the term "Object-Oriented Paradigm"?
+
+   Ans: It is a program/code design style to ease the code management -- code-reuse, code-enhance,
+        code-distribute, hide or show code and many more.
+
+   The OOP design involves three basic concepts:
+
+         1. Encapsulation & Abstraction
+         2. Inheritance and
+         3. Polymorphism
+
+Encapsulation & Abstraction
+---------------------------
+
+Wrapping of "Data" and "Instructions/Functions" together is known as "Encapsulation".
+
+Abstraction means to hide or show items which are encalsulated into a "TYPE". In other words, it draws an outline between creator of code and user of the code. You can hide those things that you don't want to give to others and show those you wish to publish or allow others to use.
+
+For instance "prinf" function in C is example of "abstraction". We don't know the internal of "printf" but we've used thousands of times. Code inside printf is hidden via "abstraction system".
+
+
+So, encapsulation & abstraction concepts are used to build/define/creae new TYPES/DATATYPES.
+
+Inheritance
+-------------
+Reuse of "Form" is called "Inheritance". 
+Or
+To create new TYPES from using EXISTING TYPE (by using the form of EXISTING TYPE) is called "Inheritance". The "EXSITING TYPE" is called "Base/Super/Parent TYPE" and "NEWLY CREATED TYPES are known as Derived/Sub/Child TYPES".
+
+Polymorphism
+-------------
+A "thing" has two or more "forms" is known as "polymorphism".
+
+For instance, a "human" can be a 'teacher", "student", "mucisian", "writer", "poet" --- multiple forms.
+
+Similarly, in computing, we've some objects having multiple forms. For instance, a "shape" can be "line", "circle", "oval", "rectangle", "triangle", "polygon" etc.
+
+
+The Namespace --- To organize/arrange the TYPES
+----------------------------------------------
+
+The "namespace" is a mechanism to create a group of "related TyPES" and keep one group of TYPES distinct from another group of TYPES to avoid name mangling (conflict).
+
+In .NET, every TYPE must be created in a named namedspace and this is the "rule of CLS". It means we are not allowed to create TYPES without using the namespace.
+
+In CTS, all types are created in named namespace and the "root" namespace of CTS is "System".
+
+The System namespace
+---------------------
+
+It is root namespace of CTS. Namespace is just like a "folder" or "box" and each namespace contains "TYPES" and "nested namespaces".
+
+System.Int32  <------- Type
+ ^
+ |
+ Root
+ Namespace
+ |
+ V
+System.Data.SqlClient.SqlConnection <--- Type
+        ^      ^
+        |      |
+        |      Sub sub NS
+      Sub namespace
+
+Naming Convention of CTS
+-------------------------
+
+How to name the entity is called "Naming Convention".
+
+
+  1.  Namespace, Type, Method (functions), Property (Function), Event (function) name must be
+      written in "ProperCase" Or "TitleCase" or "PascalCase" -- Capitalize the fist letter of
+      each word without adding spaces and underscore.
+     
+      Any "Public" entity must be created using "TitleCase".
+
+  2.  All variables (local variables, fields etc) and method parameters must be in "camelCase" --       first word must be in lower letters and then capitalize the first letter of each word        without adding spaces and underscore.
+
+  3.  Code file and other resources (image, video, text , database etc) must be in "TitleCase".
+
+  4.  Any name or entity created using prefix _ (underscore) will be consider as "hidden" or 	"private".
+
+	For example, _Abc, _Sample.cs
+
+The System.Object - the ultimate root class
+--------------------------------------------
+Every type in .NET (CTS or user-defined) is a sub-class of "System.Object".
+
+Every type in .NET must have one and only one direct super/base class. But it has one or more indirect super/base classes except the "System.Object".
+
+Inheritance is transitive,
+
+Code in C#,
+
+class A 
+{
+}
+is equivalent to
+
+class A : Object  // Direct super class is Object
+{
+}
+ 
+class B : A		// A is the direct super class of class B
+{ 			// Object is the indirect super class of class B
+			// Hence, classB has two super classes
+}
+
+Simple Types (Fundamental Types) -- Frequently used Types
+---------------------------------
+
+CTS			C#			Range
+Name			Alias			in Bytes
+------------------------------------------------------------
+
+Integer Family
+ -------------
+
+  System.Byte		byte			1  (Unsigned byte) 0 to 255
+  System.SByte		sbyte			1  (signed byte) -128 to 127
+  System.Int16		short			2
+  System.UInt16 	ushort			2  (Unsigned)
+  System.Int32		int			4
+  System.UInt32		uint			4
+  System.Int64		long			8
+  System.UInt64		ulong			8
+
+Floating point family
+
+  System.Single		float			4
+  System.Double		double			8 
+  System.Decimal	decimal			14  
+
+Misc (others)
+ 
+  System.Char		char			2
+  System.Bool		bool			Not Available -- Possibly 1 bit (i.e 1 byte)
+  System.DateTime	System.DateTime (no alias) 8 bytes
+
+All above Simple Types are "Structure" and hence they are Value Types.  
+
+Two more and most commonly used Reference TYPES  are:
+
+ 1. System.Object	object (alias)
+ 2. System.String	string (alias)  
+
+"object or System.Object" is super TYPE of all CTS whereas anything denoted with double quotes is an object of "System.String or string" TYPE.
+
+
+CLR - Common Language Runtime services
+====
+
+CLR is a stack of services (group of services) to prepare a program to be executed/run.
+
+As we already know that the C# (VB.NET) source programs are compiled into "IL Programs/code".
+
+  e.g C# Source PRogram ===> Compile ===> IL Program  (Compiled code)
+        Hello.cs                         (Hello.exe or Hello.dll)
+
+       VB.NET Source code ===> Compile ===> IL Program
+         Program.vb                         Program.exe or Program.dll
+                                          |---------------------------------|
+                                             IL Code/program is known as "Assmebly".
+
+IL Code file is called "Assembly" -- Assembly contains compiled code in IL language/instructions.
+
+Exe - executable assembly --- This type of assembly include an entry point function "main()" and 			      this "main() function" allow an OS to launch/start/run/play the
+				assembly by double clicking or entering name from command prompt.
+
+DLL - Dynamic Link Library -- This assembly is same as EXE assembly except it cannot has an entry
+				point main() function so this DLL assembly cannot be execute/run
+				directly instead it is linked to other assembly or exe assembly.
+
+CLR Services are responsible (to treat ) to run the assemblies (.exe or .dll) and these services are as follows:
+
+In fact there are number of runtime services exists and the most commonly used services of CLR are:
+
+ 1. Code loader service --- This service fetch IL code (assemblies) from the disk or network.
+         ( assembly file is loaded into RAM)
+ 2. Code verifier service -- It examine the syntax of loaded assembly code. (May be malefunction       code or virus injection etc and this service stops if it founds irregularity) 
+ 3. Code compilation service - In this phase verified code (instructions) are compiled into     "Native or OS instructions" via one of the two compilation services:
+		1. Just-In-Time JIT Compiler -- This is highly optimize compiler which compiles
+		   only those code that the application really uses.
+		2. Native-Generator (nGen) -- This tool compiles all TYPES or code (entire file)
+		   into native code at once.
+ 4. Memory Manager Service - It allocates and deallocates the memory (Stack Frame & Heap Frame).
+	
+      Memory manager allocate "Stack Frame" as per program/app requirement and also there is a 
+      system called "Grabage Collector" which allocates and deallocates the "Heap Frame".
+      The GC (Garbage Collector) services allocate memory (RAM) whenever user request received.The       GC will dispose/deallocate those HEAPS (or Objects) which are unreferenced (It means object
+      address is no longer available).
+
+ 5. Type safety & verification service -- it examines the TYPE of data and TYPE of "variable".
+
+ 6. Object Profile and Exception System services
+
+    An object profile is a way to describe the memory area or an object. It means how data will be
+    stored or retrieved.
+
+    Exception service? This is the notification (message) system which will raise appropriate 
+    messages when "exception" occurs. (An exception means unexpected happing in a code during      program run/execution.)
+
+7. COM-InterOp service - COM stands COMPONENT OBJECT MODEL (Previous/Earlienr framework of    Microsoft -- which is still in use). Inter Operability - It is a brige between .NET apps and    COM apps. (COM apps are developed using C++).
+
+   The code written using .NET framework and as per CLS is called "Managed Code" -- Code controlled by the CLR services is known as "Managed Code".
+
+   Code written in Non-NET (especially COM) is called "Unmanaged Code".
+
+   Using this COM-InterOp service,a managed code can host unmanaged code and vice-versa.
+
+8. Version & co-instance execution service.
+
+   In DNA Framework (COM) (Distributed InterNetwork Architecture), each & every component (Type) must be reigstered with "Registery Database" of Windows OS. This Registry Database must contains unique list of "Component Registration". It means you cannot have registration of two components of "Same version".
+
+  In .NET Framework, Registry details is saved inside the "assembly" itself. There is no centralize regisry database. This "Version & Co-instance" service examine/read the assembly metadata (registry information) and compare the version of TYPES.
+
+
+Assmebly ( assemblies Plural)
+------------------------------
+
+An assembly is a program file having .exe or .dll extention that contains :
+
+    1. IL Code (MSIL Instructions)
+    2. Assembly Metadata -- name, version etc of current assembly
+    3. Referenced Assemblies along with metadata and
+    4. Resources (image, icon, text etc)
+
+Now, based upon the usage assembly is classified as :
+
+    1. Public or Shared assemblies 
+    2. Private assemblies
+
+An assembly that is shared by one or more applications or assemblies is called "Shared or public" assembly. This category of assembly copied at central repository folder (assembly bank folder or global assembly cache - GAC) and used by apps.
+
+Private assembly is an assembly that is used by a specific application where it is copied. It means we must have to copy "private" assembly to each app where we wish to use it. By default, we will create "private assemblies". Of course, we will use "Shared assemblies that contains CTS".
+
+Satelite Assembly --- There is a special category of assembly that contains only "resources -- image, text, icons etc".
+
+[Side Note: Win OS registry database is edited/opened using "regedit.exe" tool]
+
+The .NET Assemblies don't use "Win Registry database" instead each assembly has its own registry information and this information is called "Metadata - Data about Data". For instance, version, location or reference, super type, sub-type, methods description and so on.
+
+
+
+ 
+

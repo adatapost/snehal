@@ -1,0 +1,68 @@
+What is a "Program"?
+  
+  It is a set of "instructions" and "data".
+
+Which system is responsible to execute the programs?
+
+  Ans: An perating system
+
+  The "Operating System" can execute the "programs" that contains "instructions & data" in Native language or machine language or binary language.
+
+
+Type of programs
+------------------
+  We've two types of "programs":
+   
+  1. Source program and
+  2. Object program
+
+  Source Program/code - A "program/code" that is written by human using any programming 
+			language syntax.
+
+			For example, hello.c is a C language source program
+				     Hello.java is a Java source code file
+				     Hello.cs is a C# source code/program
+
+  Object program/code - A "program/code" contains native or machine instructions & data.
+
+		
+ There are "translator" software that convert or translate source code/program into "object code/program" and these are :
+
+    1. Compiler and
+    2. Interpreter
+
+ Compiler -- It reads whole source program, examine syntax rules of all instructions (entire              file), and generate "object code" if source code is error free. It lists the errors 	     (syntax errors) otherwise.
+
+ Interpreter -- It reads one by line from source prgoram -- a line at a time, verify its syntax,
+                translate this line into object code and pass the object code to OS to run that
+		instruction if that line is error free. Halts program and displays error message
+		otherwise.
+
+
+How floating point value represented into the RAM/Memory?
+
+  Computer system uses "Exponent-Mentisaa" sytem to represent floating point data.
+
+For instance,
+   2.5 <--- Human decimal system
+
+is expressed as,
+   25
+  ---
+   10
+                                       power
+  Now, Exponent symbol E means value 10     
+                     10
+    e.g e+10 means 10
+                     -5
+        e-5  means 10
+               1          -1
+  25E-1 = 25 x--- = 25 x 10    E stands for Exponent -- Scientific notation 
+               10  
+
+   100  = 1E+2
+   1000 = 1E+3
+   1..... = 1E+30
+ 
+	 
+

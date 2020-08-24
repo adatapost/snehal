@@ -1,0 +1,751 @@
+Creating an alias (Second name or substitute)
+---------------------------------------------
+
+using System;
+using Cn = System.Console;
+
+class Test
+{
+  static void Main()
+   {
+     var num = 10;
+     var amount = 2000.30;
+     var name = "Snehal";
+
+     Cn.WriteLine("You may use 'Cn' alias instead of Console");
+     Console.WriteLine("This is also valid!");
+     Cn.WriteLine(num);
+     Cn.WriteLine(amount);
+     Cn.WriteLine(name);
+   }
+}
+
+var Keyword -- Create a local variable
+---------------------------------------
+
+Syntax:
+
+ var variableName = value;
+
+Compiler assigns a datatype as per the assigned value type.
+
+   var num = 10;  will become "int" variable
+   var amount = 2000.30; will become "double" variable
+   var name = "Snehal"; will become "string" variable
+
+IMPORTANT**** The "var" keyword is only used to create "local" variables.
+   
+
+Literals
+--------
+
+Literals are symbols or datavalue that express the "Type" along with data.
+
+Have a look at following literals of Simple Type:
+
+1. integer literals
+
+  -> When integer literal assigned to byte, sbyte, short, ushort and the range of assigned value      is in between the range of target type the integer literal converted automatically to
+      sbyte, byte, short and ushort.
+
+           byte a = 10;   -- automatically int to byte conversion
+           byte b = 400; -- Error -- range exceeds
+           short c = 40000; - Error  -- range exceeds
+           ushort d = 40000; -- Accepted 0 to 65535 ( 2^16 - 1)
+
+   -> Any numeric value without decimal point will be "int - System.Int32"
+
+Example: Examine the Range of Simple Types. Each Simple type has MaxValue and MinValue property (function) which returns the range.
+
+using System;
+
+class Test
+{
+  static void Main()
+  {
+     Console.WriteLine(int.MinValue);
+     Console.WriteLine(int.MaxValue);
+
+     Console.WriteLine(double.MinValue);
+     Console.WriteLine(double.MaxValue);
+  }
+}
+
+   -> Long literal -- Use "L" or "l" suffix to create long literal
+
+Example:
+
+using System;
+
+class Test
+{
+  static void Main()
+   {
+     long p = 100000 * 100000;  <-- Code will not compiled because of int type range.
+                                    So we must have to use L to both or any one expression.
+                                    
+     Correction:
+
+      long p = 100000L * 100000;  Or  100000 * 100000L or 100000L * 100000L
+      Console.WriteLine( p ); 
+    }
+} 
+
+Simple Type Conversion will be performed as per following table automatically.
+
+	byte   short   int    long    float   double	
+byte    byte   short   int    long    float   double	
+short   short  short   int    long    float   double	
+int     int    int     int    long    float   double	
+long    long   long    long   long    float   double
+float   float  float   float  float   float   double
+double  double double  double double double   double
+   
+
+  Express integer value using binary, hexadecimal using 0b and 0x prefix respectively. There is a special separator character _ is used to improve the readability of numeric value.
+
+    long phone = 99_33_44_55_77L;
+    int pin = 340_340;
+
+using System;
+class Test
+{
+    static void Main()
+    {
+        int a = 10;  // decimal
+        int b = 0xA; // Hexadecimal 
+        int d = 0b1010; // Binary
+        int c = 10_000;
+
+        Console.WriteLine(a);
+        Console.WriteLine(b);
+        Console.WriteLine(d);
+        Console.WriteLine(c);
+    }
+}
+
+2. Floating point literals
+
+   -> Numeric value with decimal point is "System.Double" - double type
+
+   -> You must have to use "F" or "f" suffix for "System.Single" - float type
+   
+   -> Use "M" or "m" suffix for "decimal" type
+
+What will be the output?
+
+using System;
+class Test
+{
+    static void Main()
+    {
+        float n = 1.0;  <--- Error - 10.10 is double type and can't convert to float implicitly
+        Console.WriteLine(n); 
+    }
+}   
+Edit: Use F suffix,  float n = 1.0f; will create a float literal
+
+Similarly,
+
+using System;
+class Test
+{
+    static void Main()
+    {
+        float n = 1.0f;  // float literal 1.0f
+        double m = 1.0;  // double literal 1.0 or 1.0D
+        decimal k = 1.0m; // decimal literal 1.0m
+        Console.WriteLine(n);
+        Console.WriteLine(m);
+        Console.WriteLine(k);
+    }
+}  
+   
+3. true and false (lowercase) keywords express the boolean literal
+
+   bool status = true;
+
+Or
+
+   var status = true;
+
+   var pass = 56 > 35;
+
+4. Character literal
+
+    ANSI literal - Single characer enclosed with single quote.
+
+		e.g '6' 'H'  '?'  ' '  '\n'  '\t'
+
+    Unicide literal - \u+four hex char are enclosed in single quote.
+
+			e.g.  '\u0000' 
+                              '\u00' <- error 
+                              '\u0912' <---valid
+
+   Example: (code in Main method)
+
+    var ch = 'T';
+    char p = '?';
+    char gch = '\u0932';
+
+    Console.WriteLine(ch);  // T
+    Console.WriteLine(p);   // ?
+    Console.WriteLine(gch); // ? <--- Console won't display non English
+
+    Debug.WriteLine(ch);  // T
+    Debug.WriteLine(p);   // ?
+    Debug.WriteLine(gch); //
+
+
+ Now, we will use "Debug" featue of Visual Studio -- See "Output" window (View Menu + Output Window) at the bottom of Visual Studio.
+
+   We will use "Output" to view the internal activities of our application. If we wish to print or write something in "Output" window then use,
+
+    System.Diagnostics.Debug.WriteLine(Message or variable)
+
+5.  string literal - Any value enclosed in double quotes is called string literal and it is an instance of System.String class (Reference Type).
+
+    Syntax:
+
+       Single line string literal:
+
+           "Anything....... in double quote in a sigle line"
+
+       Verbatim string literal: Preserve whitespace and escape chars.
+
+          @"Anything in
+one or more
+lines...."
+
+       Template string literal: Embed the object into a string. It means an object will be
+				enclosed into string to become a string.
+
+		$".....expression..."
+
+Example:
+
+using System;
+class Test
+{
+    static void Main()
+    {
+        string name1 = "This is the simple line string.";
+
+        string name2 = @"
+Dear Student,
+
+I got letter from our president of school.
+
+Thank you,
+Abc";
+
+        int age = 10;
+        string name = "Heena";
+
+        string name3 = $"Hello my name is {name} and I'm {age} years old.";
+        string name4 = $@"
+Dear {name},
+
+Please verify your age record. 
+Our record shows that you're {age} 
+years old.
+";
+
+        Console.WriteLine(name1);
+        Console.WriteLine(name2);
+        Console.WriteLine(name3);
+        Console.WriteLine(name4);
+    }
+}
+
+
+Escape sequence characters (Backslash characters)
+-------------------------------------------------
+These set of characters are insturctions to the device (console,mouse,keyboard, modem):
+
+ 1. \n - New line
+ 2. \r - Carriage return (Enter key)
+ 3. \t  - Horizontal tab
+ 4. \b  - Backspakce 
+
+If these chars are used with string then they will become commands/instructions.
+
+Following examples demonstrate the use of Escape characters
+
+Example-1: 
+
+        string str = "The\nRed\nSun";
+        Console.WriteLine(str);
+        Console.WriteLine("Dear Sir,\nI'm unable to attend todays session\nbecause of ...");
+
+Example-2:
+
+        Console.WriteLine("No\tName\t\tAge");
+        Console.WriteLine("1\tRaj\t\t10");
+
+
+To escape a string  1. to add extra backslash or 2. Use @ varbatim string literal
+--------------------------------------------
+If you don't want the escape characters to be used as "commands" -- in other words, you want to use these escape characters as data then append \ additional backslash. e.g \\n  \\t
+
+
+        string path1 = "c:\\program";
+        Console.WriteLine(path1);
+
+        path1 = "c:\test\new folder";
+        Console.WriteLine(path1);
+
+        path1 = "c:\\test\\new folder";
+        Console.WriteLine(path1);
+
+        // Verbatim string literal
+        path1 = @"c:\program";
+        Console.WriteLine(path1);
+        path1 = @"c:\test\new folder";
+        Console.WriteLine(path1);
+
+
+Example: In this sample, we did't use variables.
+
+        Console.WriteLine("c:\tst\new folder"); // without escape a string
+        Console.WriteLine("c:\\tst\\new folder"); // to escape a string
+        Console.WriteLine(@"c:\tst\new folder"); // to escape a string
+
+String concatenation 
+--------------------
+Join two strings or convert value to string and join to other string.
+
+We will use + operator with string object.
+
+ Syntax: stringValue + valueOfAnyType
+
+Example: 
+
+ string firstName = "Reena";
+ string lastName = "Shah";
+
+ string fullName = firstName + lastName;
+
+ Console.WriteLine(fullName);
+
+Example:
+
+        string firstName = "Reena";
+        string lastName = "Shah";
+
+        Console.WriteLine("First Name : " + firstName);
+        Console.WriteLine("Last Name  : " + lastName);
+        Console.WriteLine("Full Name  : " + firstName + " " + lastName);
+
+        Console.WriteLine("*****" + "Address Info" + "*****");
+        string fullName = firstName + " " + lastName;
+        Console.WriteLine(fullName);
+        Console.WriteLine("Name : " + fullName); 
+        
+Labeling the data
+------------------
+We will always use string literals to label the data -- to label means to describe the data.
+
+Example:
+
+  int age = 10;
+  string name = "Reena";
+  Console.WriteLine("Age : " + age);
+  Console.WriteLine("Name : " + name);
+
+Example: Alternative way of previous program
+  
+  int age = 10;
+  string name = "Reena";
+  string data = "Age : " + age + "\nName : " + name;
+  Console.WriteLine( data );
+
+Example: (Homework)
+
+|---------------------|
+| Name    : Raj       |
+| Address :           |
+|          City: Meh  |
+|          Pin : 12222|
+|---------------------|
+
+2.
+
+/----------------\
+|  Hello C#      |
+\----------------/
+
+3. 
+
+*:--------------:*
+ |              |
+ |              |
+*:--------------:*
+
+
+Any data used with String will cast/convert to string
+-------------------------------------------------------
+
+  "Sum " + 10 + 20  => Output will be Sum 1020
+  "Sum " + (10 + 20) => Sum 30
+
+Example: I want to print sum of two numbers in following format:
+
+      Output => Sum of 10 and 20 is 30
+
+
+Code-1:  
+
+  int a = 10, b= 20;
+  Console.WriteLine("Sum of " + a + " and " + b + " is " + (a+b) );
+
+Code-2: Using template $""
+
+  int a = 10, b= 20;
+  Console.WriteLine($"Sum of {a} and {b} is {a+b}");
+
+Code-3: Using String.Format("indexed parameter....",param1,param2,...)
+
+  int a = 10, b= 20;
+  Console.WriteLine("Sum of {0} and {1} is {2}",a,b,a+b);
+
+OR, we can use String.Format directly
+
+    int a = 10, b= 20;
+    string s = String.Format("Sum of {0} and {1} is {2}",a,b,a+b);
+    Console.WriteLine(s);
+
+Example: Playing with String.Format() method
+
+  int a = 10, b = 20;
+
+  string s = String.Format("\n{0} + {1} = {2}\n{0} - {1} = {3}\n{0} * {1} = {4}\n{0} / {1} = {5}",
+                      a, b, a+b, a-b, a*b, a/b);
+
+  Console.WriteLine(s);
+
+Example: Find the length of a string "objVar.Length" property
+
+        string s = "Hello World";
+        Console.WriteLine(s.Length);
+
+Example: stringObj.ToUpper() and ToLower() methods
+
+       string s = "Hello World";
+        Console.WriteLine("Original : " + s);
+        s = s.ToUpper();
+        Console.WriteLine(s);
+        s = s.ToLower();
+        Console.WriteLine(s);
+
+Example: Use varName[indexer] method 
+
+       string str = "Hello World";
+
+        char c = str[0];
+        Console.WriteLine(c);    //H
+        Console.WriteLine(str[6]); // W
+  
+Example: Replace("searchString","replaceString")
+
+       var str = "The red sun and red rose";
+
+        str = str.Replace("red", "blue");
+
+        Console.WriteLine(str);
+
+Example: Contains() method to check whether a given string exists in another string.
+
+  var str = "The red sun and red rose";
+  var searchStr = "sun";
+
+  if(str.Contains( searchStr ) )
+   {
+     Console.WriteLine($"String {searchStr} found");
+   }
+ else
+   {
+     Console.WriteLine("Not found!"); 
+   }
+
+ NOTE: Contains returns true if found, returns false otherwise
+ 
+
+Example: Equality of two objects of string (or any types) -- bool Equals()
+
+        var s1 = "Hello";
+        var s2 = "Hello";
+
+        if(s2.Equals(s1))
+        {
+            Console.WriteLine("Equals");
+        }
+        else
+        {
+            Console.WriteLine("Un equals");
+        }
+
+        if ("Hello".Equals(s1))
+        {
+            Console.WriteLine("EQ");
+        }
+
+Example: int strObj1.CompareTo(strObj2) -- Compare two strings -- 
+         It returns 0 if strObj1 equals to strObj2
+         It returns <0 (Positive) if strObj1 > strObj2 and
+         It returns >0 (Negative) if strObj1 is less than strObj2
+
+var s1 = "Apple";
+var s2 = "apple";
+int result = s1.CompareTo(s2);
+Console.WriteLine(result);
+
+Note: strObj1.CompareTo(strObj2) method compare object content as per the volume capacity.
+
+To compare strings based upon the ordinal (ordinal means index compare) comparision:
+
+      -> It returns 0 if both are equals
+      -> >0 if first > second and
+      -> <0 if second > first
+
+    The method is "String.CompareOrdinal(str1,str2)"
+
+Example:   
+        var s1 = "Aq";
+        var s2 = "Apple";
+
+        int result = string.CompareOrdinal(s1, s2);
+        if(result == 0)
+        {
+          Console.WriteLine("both are equals");
+         }
+       else 
+       if(result>0)
+       {
+         Console.WriteLine($"{s1} > {s2}");
+        }
+      else
+       {
+         Console.WriteLine($"{s1} < {s2}");
+        }
+
+Example: str.IndexOf(search, start_index)
+         str.LastIndexOf(search, start_index)
+
+      Search a string and returns index if found, returns -1 otherwise.
+
+        var source = "The red sun and red rose";
+        var search = "red";
+
+        int result = source.IndexOf(search);  // 4
+        Console.WriteLine(result);
+
+        // Search again
+        result = source.IndexOf(search, result+1);  //16
+        Console.WriteLine(result);
+
+        result = source.IndexOf(search, result + 1);  //-1 Not found
+        Console.WriteLine(result);
+
+
+        result = source.LastIndexOf(search);
+        Console.WriteLine(result);
+        result = source.LastIndexOf(search, result -1);
+        Console.WriteLine(result);
+        
+Example: Program to count the word occrence in a string.
+
+        var source = "The red ad redd ared red rose";
+        var search = "red";
+        int count = 0 , result=-1;
+
+        do
+        {
+            result = source.IndexOf(search, result + 1);
+            if(result>0)
+               count = count + 1;
+        } while (result > 0);
+
+        Console.WriteLine($"Occurence of [{search}] word in a string is [{count}]");
+        
+Example: bool StartsWith() and bool EndsWith methods
+
+       var source = "The red sun.";
+
+        Console.WriteLine(source.StartsWith("the")); // False
+        Console.WriteLine(source.StartsWith("The")); // True
+        Console.WriteLine(source.EndsWith(".")); // True
+
+
+Convert Simple type value to String
+=========================================================================
+
+  There are several ways to do so but the most effective is calling of "ToString()" method.
+
+Example:
+        int no = 150;
+
+        //Method-1 - via Templated string
+        string str = $"{no}";
+        Console.WriteLine(str);
+
+        //Method-2  - via String concatenation
+        str = "" + no;
+        Console.WriteLine(str);
+
+        //Method-3 via ToString() method
+        str = no.ToString();
+        Console.WriteLine(str);
+
+Example: ToString("N or C") format - N means Numeric and C for Currency
+
+        double no = 152340.786;
+        string str = no.ToString("N");
+        Console.WriteLine(str);
+        str = no.ToString("N3");
+        Console.WriteLine(str);
+
+        str = no.ToString("C");
+        Console.WriteLine(str);
+
+        str = no.ToString("00,00,00,000.00");
+        Console.WriteLine(str);
+        str = no.ToString("0000000000.00");
+        Console.WriteLine(str);
+        str = no.ToString("#########.#");
+        Console.WriteLine(str);
+
+
+Convert String to Simple Types using TypeName.Parse(str) method
+----------------------------------------------------------------
+        var str = "290";
+        int no = int.Parse(str);
+        double d = double.Parse(str);
+        Console.WriteLine(no);
+        Console.WriteLine(d);
+
+Convert.ToXXXXXXXX( str ) methods are also used to convert string to simple types:
+
+        var str = "290";
+        int no = Convert.ToInt32(str);
+        double no1 = Convert.ToDouble(str);
+        Console.WriteLine(no + " " + no1);
+
+Both methods, Parse() and ToXXXXXX() will throws an error/exception when string contains non-digits.
+
+  Following code will not run because of "Invalid format of data":
+
+      string s = "1a45";
+      int n = int.Parse(s);  //  Convert.ToInt32(s);
+
+Safe parse -- SimpleType.TryParse(str, out varName) method
+------------------------------------------------------------
+This method returns true if parse succeed, returns false otherwise. The "out" is a keyword to define a reference of variable (& address like operator in C language) and it will be updated with parse result. If parse fails then value 0 will be assigned to out variable.
+
+        string s = "14";
+        int n;
+
+        bool result = int.TryParse(s, out n);
+        if(result)
+        {
+            Console.WriteLine("Success! " + n);
+        }
+        else
+        {
+            Console.WriteLine("Parse failed");
+        }
+
+        s = "19+2.34";
+        double d;
+        if(double.TryParse(s,out d))
+        {
+            Console.WriteLine(d);
+        }
+
+Example: string Console.ReadLine() method to input from keyboard
+
+        string name;
+        int age;
+        Console.Write("Enter your name : ");
+        name = Console.ReadLine();
+
+        Console.Write("your age : ");
+        age = int.Parse(Console.ReadLine());  // int.TryParse( Console.ReadLine(), out age);
+
+        Console.WriteLine($"Name : {name} Age : {age}");
+
+The System.DateTime 
+============================================================
+
+1. Current system Date & Time
+
+        DateTime now = DateTime.Now;
+        var nowUtc = DateTime.UtcNow;
+
+        Console.WriteLine(now + "    " + nowUtc);
+
+2. Parse the "MM/dd/yyyy HH:mm:ss tt" string (US Format)
+
+       var str = "08/14/2020 10:45:33 AM";
+       var dt = DateTime.Parse(str);  // DateTime.TryParse( str, out dt);
+       Console.WriteLine(dt);
+
+3. Read the parts of DateTime object - Day, Month, Year, Hour, Second, Minute etc
+
+        var dt = DateTime.Now;  // DateTime.Parse("01/13/2020 05:04:00 PM")
+        Console.WriteLine(dt.Day);
+        Console.WriteLine(dt.Minute);
+
+4. Format a DateTime - i.e convert to string using ToString("formatCharacters") syntax
+
+    var dt = DateTime.Now;
+
+    string dateOnly = dt.ToString("d");
+    string timeOnly = dt.ToString("t");
+    Console.WriteLine( dateOnly );
+    Console.WriteLine( timeOnly );
+
+5.  FormatCharacters to format a date
+
+        var dt = DateTime.Parse("12/31/2002 23:22:22");
+
+        Console.WriteLine(dt.ToString("dd"));   // day number
+        Console.WriteLine(dt.ToString("ddd  dddd")); // Abbr Full day name
+        Console.WriteLine(dt.ToString("M")); // Month, day
+        Console.WriteLine(dt.ToString("MM")); //  month number
+        Console.WriteLine(dt.ToString("MMM MMMM")); // Abbr Full month name
+        Console.WriteLine(dt.ToString("y"));   // Month, year
+        Console.WriteLine(dt.ToString("yy"));  // 2 digit year
+        Console.WriteLine(dt.ToString("yyyy"));  // 4 4 digit years
+        Console.WriteLine(dt.ToString("HH:mm:ss"));  // HH - 24 hours
+        Console.WriteLine(dt.ToString("hh:mm:ss tt")); // hh - 12 hours
+        Console.WriteLine(dt.ToString("dd-MM-yyyy"));
+
+6. AddXXXXXXX(-/_ int value) --- To add / subtract date part (AddDays, AddMonths, AddYears...)
+
+        var dt = DateTime.Now;
+        var past = dt.AddDays(-10);  
+        var future = dt.AddDays(10);
+
+        Console.WriteLine(past);
+        Console.WriteLine(dt);
+        Console.WriteLine(future);
+
+7. Add 2 years, 3 months and 5 days to current date
+
+   var dt = DateTime.Now.AddYears(2).AddMonths(3).AddDays(5);
+   Console.WriteLine(dt)
+
+8. The System.TimeSpan type to store difference of two datetime objects.
+
+        var dt1 = DateTime.Parse("12/31/2002 12:12:34");
+        var dt2 = DateTime.Parse("8/15/2020");
+
+        TimeSpan diff = dt2 - dt1;
+
+        Console.WriteLine(diff.TotalDays);
+        Console.WriteLine(diff.TotalDays/356);
+        Console.WriteLine(diff.TotalHours);
+        Console.WriteLine(diff.TotalMinutes);
+

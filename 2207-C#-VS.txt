@@ -1,0 +1,365 @@
+Visual Studio
+-------------
+
+It is an IDE - Integrated Development Environment for rapid application development. This IDE is not a .net framework or language. It is just collection of "tools" that assists the developers. Developers can develop software without using the Visual Studio. Of course, there are some advanced editors including sublime text, code, atom, vim to create source program of any programming language/environment.
+
+Visual Studio provide:
+
+ 1. Code editor
+ 2. Code intellisense -- Syntax highlight and code guess
+ 3. Database designer
+ 4. Document designer
+ 5. Model designer (Data designer)
+ 6. Debugging & Testing tools
+ 7. Process & Memory usage tools
+ 8. Build tool -- Generate assemblies
+ 9. Nuget package manager  -- It is a library manager where one can obtain necessary library
+10. Code Repository -- Code bank -- We will use "GIT Protocol Source code control". This tool
+     is essential for a Team working ( one or more members) on projects.
+
+     [You may visit "github.com" which is a remote code repository and it is free]
+
+Build Tool (MsBuild offical tool name)
+----------
+
+  This tool generate assembly based upon the given instructions and the instruction file is known   as "Project" file. For instance, C# project file has ".csproj" extension.
+
+  This tool gether source code files (.cs), compile them and generate IL Code. It also gether
+  non programming code files (resources - image,text,data file etc) and embed into the assembly.
+
+  There are two main configuration of "Build":
+
+     1. Debug Build  and
+     2. Release Build
+
+Debug build -- This build configuration compiles the code as per current development environment                and it has some components which rely on developer machine to test the code and 
+               debug it. (This is default configuration)
+
+Release Build - This build remove all developer environment support and compile it as independent 		assembly so it can be execute on "any" hardware or machine.
+
+                Release build means ready for distribution of software.
+
+The "Project" system
+----------------------
+
+The "Project" is a template of behaviour of an application. 
+
+It contains necessary details in order to perform application build (compilation). In fact, the "MSBUILD" tool uses project template to generate the assemblies.
+
+A project template configuration file has XML format (eXtensible Markup Language) to define the rules for "MSBUID" tool.
+
+  A "Project" XML file contains:
+
+     1. What version of .NET framework will be used
+     2. Name , version , type and location of assembly
+     3. References of .NET CTS libraries
+     4. Metadata of each source code and non-source code file. Which file should be compiled and
+ 	which one is not.
+     5. What build mode -- Debug or Release is used and so on.
+
+
+XML: XML is not a markup language but it is a language to create new markup languages.
+
+Application: XML is a data interchange format. 
+
+JSON: JavaScript Object Notation is another data interchange format. 
+
+JSON Format syntax
+------------------
+{
+  "key1": value1,
+  "key2": value2
+}
+
+Example: Student JSON
+
+{
+ "name":
+       {
+         "first": "Man",
+         "last": "V",
+         "middle": "P"
+       },
+  "age": 12,
+  "standard": 6
+}
+
+Rules:
+1. pairs-list enclosed in { } curly braces
+2. a pair "key": value -- where key must be "string" where as value can be any type
+3. each pair is delimited with comma (,).
+4. a document can have one and only one root { } or [ ]  --- Root means top-level
+   [ ] syntax is used for collection  or group.
+   e.g  
+    
+   {
+     "name": "Rajesh Shah",
+     "languages": ["Hindi", "Gujarati", "English"]
+   }
+ 
+5. key-name are case-sensitive. It means "Age" key is not exists in above format.
+
+XML Format syntax 
+-----------------
+Rules:
+
+1. A document must have one and only one root element.
+2. Element names are user-defined words created using alphabets, digits and underscore.
+3. Element names are case-sensitive.
+4. Elements must be strictly nested. Intersection of tags/elements is invalid.
+5. Attribute value must be enclosed in single or double quotes.
+Example: Student XML
+<?xml version="1.0"?>
+<students>
+  <student>
+     <name>
+        <first>Man</first>
+        <last>P</last>
+        <middle>V</middle>
+     </name>
+     <age>12</age>
+     <standard>6</standard>
+  </student>
+  <student>
+    <name>....</name>
+    ...
+  </student>
+  ....
+</students>
+
+You may use attributes:
+
+ ...
+ <student>
+    <name first="Man" last="P" middle='R'></name>
+ </student>
+ ....  
+
+C# Language Basics
+-------------------
+
+C# is a CLS Compliant programming language and it,
+
+1. supports OOP
+2. supports Dynamic programming language behavior
+3. supports "statically typed language" behavior
+
+   Statically typed means "Datatype of variable" cannot be changed during program execution.
+		For instance,  int n;  <--- declaration will remains "n" as integer variable.
+
+   Dynamically typed "means" the "Datatype of variable" can be changed during program execution.
+
+		For instance, In C# we will use "dynamic" keyword to create such variables.
+
+			dynamic p;
+
+                        p = 10;    <-- Int variable
+                        p = "Hello" <-- String variable
+			p = 5.5     <-- Double variable
+4. C# is strongly typed checked language -- C# check the datatype of "variable" and "value"
+   at the time of compilation.
+6. supports "functional programming" -- an enhanced design style over the "OOP".
+7. C# is a case-sensitive and syntax derived from C/C++. 
+8. C# Version is same as Visual Studio - e.g C# 2019 or C#2021 etc
+
+C# Code / Program file (.cs)
+----------------------
+The C# code file should have .cs extension but you may use your own however, for the sake of simplicity we will keep .cs as extension.
+
+C# Compiler compiles the code of .cs file hence it is called "Compilation Unit".
+
+Following is a program structure of code file:
+
+|--------------------------------|
+| import section                 |
+| -- Importing namespaces        |
+|    set aliases etc             |
+| (Top/Begin of the code file)   |
+| -> This is optional section    |
+|--------------------------------|
+| Global namespace               |
+|   Or
+| Your own namespace             |
+|                                |
+|  Inside the namespace          |
+|  we've sub-namespaces, and     |
+|  types.                        |
+|--------------------------------|
+   
+A Standard code file looks a like:
+
+using System;
+using Something.Anything;
+
+namespace MyAccounting
+{
+   public class Ledger { } 
+   public class Transaction { }
+   ....
+   namespace Reports
+    {
+        public class Ledger { }
+        ...
+    }
+}
+  
+The entry point "Main()" method 
+--------------------------------
+
+The CLR require an entry point Main() method with one of the following syntax in your code :
+
+   1. static void Main() { } 
+   2. static int Main() { .... }
+   3. static void Main(string []args) { }
+   3. static int Main(string []args) { }
+
+An entry point is a location where program starts.
+
+A program must have one and only one Main() function.
+
+The Main() method must be enclosed in a "class" definition.
+
+class YourDatatypeName
+{
+  static void Main()
+   {
+     //Statements
+    }
+}
+
+
+The Console Project Template
+------------------------------
+
+The "Console" means a terminal (Keyboard+Monitor oriented action) -- a simple command window where your program prints data/information as well as read/input value/data.
+
+This "Console" project especially designed to learn language from the scratch without adding extra code files and configurations.
+
+The "Console" project generate "Exe assembly" because it must contains an entry point Main() method.
+
+The System.Console class (Type)
+----------------
+The System.Console class has number of methods to wrok around console actions. We will use following two methods initially.
+
+   1. System.Console.Write( data ) -- Prints data at cursor
+   2. System.Console.WriteLine( data ) -- Prints data at cursor and then move cursor at begin
+					  of newline (\n).
+
+[Note: System - a namespace, Console - a class/type, WriteLine - a method]
+
+
+Run the program
+----------------
+
+In order to run the program, first we must have to build (via Debug or Release scheme).
+
+In Visual Studio, we've Debug menu with two options:
+
+  1. F5 = Start with debug -- will compiled code in DEbug config and then run it.
+
+  2. Ctrl + F5 == Without Debugging -- Will compile the code in Release config and then run it.
+
+Create Project + Test the code
+-------------------------------
+1. Create a "Console App" project (either Core.NET or .NET Framework)
+2. Open "Program.c" code and remove all content and write following code in it.
+
+class MyFirstType
+{
+  static void Main()
+   {
+     System.Console.Write("C#");
+     System.Console.Write("Programming");
+    }
+}
+
+3. Press F5 to use Debug build Or Control F5 to Release build 
+
+Example: Creating a local variable
+
+A variable created inside the "method" is called "local variable".
+
+Scope of "local" variable is within the function/method. It means it is used inside the method only.
+
+
+Life of "local" variable is within the method.
+
+Local variables are uninitialize -- no default value.
+
+class Test
+{
+ static void Main()
+  {
+    int n;
+    System.Console.WriteLine( n );
+  }
+}
+
+
+[Press F5 -- to run]
+
+The above code will not be compiled. It shows "unassigned variable n". You must have to set appropriate value before the use.
+
+Initialization : To assign value to the object at the time of declaration.
+                  Example:  int n = 10; 
+Assignment     : To assign value one an object is created.
+                  Example:   int n;
+                             n = 10;
+
+So, the updated code would be:
+
+class Test
+{
+  static void Main()
+   {
+     int n = 10;
+     System.Console.WriteLine(n);
+    }
+}
+
+Importing a namespace
+----------------------
+
+In .NET framework, each & every datatype must have fully qualified name.
+
+To import a namespace means to tell the C# compiler to attach a namespace of those types which are not fully qualified from this particular namespace.
+
+"using" keyword uses following syntax to import a namespace and it must appear at the begin of a file.
+
+Syntax:
+
+using NamespaceName;
+using Namespace.SubNamespace;
+using Alias = Namespace.TypeName;
+
+Example:
+
+using System;    // Import a namespace
+
+class Test
+{
+  static void Main()
+   {
+     int a = 10. b = 20, c;
+
+     c = a + b;
+     Console.WriteLine(a);         // Type name without namespace
+     System.Console.WriteLine(b);  // Also valid -- Fully qualified type name
+     Console.WriteLine(c);
+    }
+}
+
+Question : What is your suggestion to eliminate the errors?
+ 
+class A
+{
+  static void Main()
+   {
+     Int32 m = 10;
+     Console.WriteLine(m);
+   }
+}
+Ans: Either write fully qualified name or import the "System" namespace.
+
+
+

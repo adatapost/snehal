@@ -1,0 +1,133 @@
+The loop or iterative statements
+================================================
+
+We've four loop statements:
+
+1. simple for loop - for(initialize; booleanExpr; incr/decr) { }
+2. while loop  - while(boolExpr) {  }
+3. do while loop - do { ....  }while(boolExpr);
+
+4. foreach - for enhanced or for each loop for arrays & collections (will discuss in later)
+
+First three loops have common purpose but have difference in syntax.
+
+Example: Print "Hello" 5 times.
+
+int i;
+for(i=1;i<=5;i++)
+{
+   Console.WriteLine("Hello");
+}
+
+i=11;
+while(i<=15)
+{
+  Console.WriteLine("Hi!");
+  i++;
+}
+
+i=1;
+do
+{
+  Console.WriteLine("Hey!");
+  i++;
+}while(i<=5); <--- It must ends with ;
+
+Example: What will be the output?
+
+var s=0;
+var i=1;
+while(i<=5)
+{
+  s+=i;
+  i++;
+}
+Console.WriteLine(s);  // 15 = 1+2+3+4+5
+
+Dry run
+---------
+s	i	i<=5
+0	1	true
+1	2	true
+3	3	true
+6	4	true
+10	5	true
+15	6	false
+
+Or
+for(i=1;i<=5;i++)
+{
+ s+=i;
+}
+
+Or
+for(i=1,s=0;i<=5;s=s+i,i++)
+{}
+
+Example: Program to print sum of all numbers which are divisible by 3 and 7 between 1 to 1000.
+Example: Program to print 1 2 3 4 ... 10
+Example: Program to print 10 9 8 ...1
+Example: Program to print odd numbers between 1 to 100
+Example: Program to print even numbers between 1 to 100
+	
+Example: Output?  Factorial of given number. e.g 5! = 5 x 4 x 3 x 2 x 1
+
+var n = 5;
+var f = 1;
+
+while(n>1)
+{
+  f = f * n;
+  n--;
+}
+Console.WriteLine(f);
+
+Edit:  Factorial
+
+   for(int i=1;i<=n;i++)
+    {
+      f=f*i;
+    }
+   
+Example: Print following series:
+
+	1! 2! 3! 4! 5! ..... 10!
+
+        1  2   6  24  120  ....
+
+Example: Sum = 1 + 2 + 3 + 4 + .. N
+Example: Sum = 1 - 2 + 3 - 4 + .. N
+Example: Sum = 1 - 3 + 5 - 7 + 9 .... N
+               1!   2!   3!    4!      N!
+Example: Sum = -- + -- + -- + --- ....---
+                1    2   3     4       N
+
+Example: Print series
+         2  2  2  2       2
+	1  2  3  4  .... N
+
+Example: Print series
+          1  2   3    4    5     6      N 
+	 2  2   2    2    2    2   ... 2
+
+Example: Input a number or we've integer number. Write code to separate each digit.
+
+	Hint:
+
+	int num = 823;
+
+        Output should be:  8  break down the number and separate each digit
+			   2
+			   3
+	while( num>0 )				num	num>0	r
+        {					823	true	3
+           var r = num % 10;			82	true	2
+           num = num / 10;			8	true	8
+						0	false
+           Console.WriteLine(r);
+         }
+ Output
+  3
+  2
+  8
+
